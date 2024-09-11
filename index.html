@@ -435,6 +435,8 @@
                      <label for="message" class="contact__label">Message</label>
                   </div>
                   
+                  <p class="contact__message" id="contact-message">Message Sent Successfully ✅</p>
+
                   <button type="submit" class="contact__button button">
                      <i class="ri-send-plane-line"></i> Send Message
                   </button>
@@ -448,19 +450,19 @@
                      <p class="contact__social-description-1">
                         Does not send emails
                      </p>
-                     <p class="contact__social-description-1">
+                     <p class="contact__social-description-2">
                         Write me on my social networks
                      </p>
                   </div>
 
                   <div class="contact__social-links">
-                     <a href="" target="_blank" class="contact__social-link">
+                     <a href="https://www.facebook.com/" target="_blank" class="contact__social-link">
                         <i class="ri-facebook-circle-line"></i>
                      </a>
-                     <a href="" target="_blank" class="contact__social-link">
+                     <a href="https://www.instagram.com/raihanseptyansyah/" target="_blank" class="contact__social-link">
                         <i class="ri-instagram-line"></i>
                      </a>
-                     <a href="" target="_blank" class="contact__social-link">
+                     <a href="https://www.linkedin.com/in/mreihan-septyansyah/" target="_blank" class="contact__social-link">
                         <i class="ri-linkedin-box-line"></i>
                      </a>
                   </div>
@@ -472,7 +474,27 @@
 
       <!--==================== FOOTER ====================-->
       <footer class="footer">
-         
+         <div class="footer__container container grid">
+            <ul class="footer__links">
+               <li>
+                  <a href="#about" class="footer__link">About </a>
+               </li>
+               
+               <li>
+                  <a href="#services" class="footer__link">Services</a>
+               </li>
+
+               <li>
+                  <a href="#projects" class="footer__link">Projects</a>
+               </li>
+            </ul>
+
+            <span class="footer__copy">
+               &#169; All Rights Reserved
+               <a href=""></a>
+            </span>
+
+         </div>
       </footer>
 
       <!--========== SCROLL UP ==========-->
@@ -482,7 +504,9 @@
       <script src=""></script>
       
       <!--=============== EMAIL JS ===============-->
-      
+      <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+      </script>
+
 
       <!--=============== MAIN JS ===============-->
       <script src="assets/js/main.js"></script>
