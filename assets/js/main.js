@@ -76,25 +76,35 @@ window.addEventListener('scroll', scrollUp)
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 const sections = document.querySelectorAll('section[id]')
-    
-const scrollActive = () =>{
-  	const scrollDown = window.scrollY
 
-	sections.forEach(current =>{
-		const sectionHeight = current.offsetHeight,
-			  sectionTop = current.offsetTop - 58,
-			  sectionId = current.getAttribute('id'),
-			  sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+const scrollActive = () => {
+    const scrollDown = window.scrollY
 
-		if(scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight){
-			sectionsClass.classList.add('active-link')
-		}else{
-			sectionsClass.classList.remove('active-link')
-		}                                                    
-	})
+    sections.forEach(current => {
+        const sectionHeight = current.offsetHeight,
+            // sectionTop = current.offsetTop - 58,
+            sectionTop = current.id === 'contact' ? current.offsetTop + 80 : current.offsetTop - 58,
+            sectionId = current.getAttribute('id'),
+            sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+
+        // Check if sectionsClass is not null before adding or removing the class
+        if (sectionsClass) {
+            if (scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight) {
+                sectionsClass.classList.add('active-link')
+            } else {
+                sectionsClass.classList.remove('active-link')
+            }
+        }
+    })
 }
 window.addEventListener('scroll', scrollActive)
-
+document.querySelector('.nav__link-button[href="#contact"]').addEventListener('click', (event) => {
+    event.preventDefault();
+    window.scrollTo({
+        top: document.getElementById('contact').offsetTop + 80, // Offset specifically for #contact
+        behavior: 'smooth'
+    });
+});
 
 /*=============== DARK LIGHT THEME ===============*/ 
 const themeButton = document.getElementById('theme-button')
