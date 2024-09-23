@@ -150,3 +150,77 @@ sr.reveal(`.home__name, .home__info,
             .about__container .section__title-1, .about__info,
             .contact__social, .contact__data`, {origin: 'left'})
 sr.reveal(`.services__card, .projects__card`, {interval: 100})
+
+/*=============== PROJECT PREVIEW ===============*/
+
+    // Select all buttons with the class "projects__button"
+const buttons = document.querySelectorAll('.projects__button');
+
+// Add an event listener to each button
+buttons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    // Get the data-preview attribute value of the clicked button
+    const previewId = button.getAttribute('data-preview');
+
+    // Select the corresponding popup window
+    const popup = document.getElementById(`projects-preview-${previewId}`);
+
+    // Show the popup window
+    popup.classList.add('active');
+  });
+});
+
+// Add an event listener to the close button of each popup window
+const closeButtons = document.querySelectorAll('.preview__close');
+
+closeButtons.forEach((closeButton) => {
+  closeButton.addEventListener('click', (e) => {
+    // Get the parent popup window
+    const popup = closeButton.parentNode.parentNode;
+
+    // Hide the popup window
+    popup.classList.remove('active');
+  });
+});
+
+document.addEventListener('click', (e) => {
+
+    // Check if the click is outside the popup window
+  
+    if (!e.target.closest('.projects__preview')) {
+  
+      // Close all popup windows
+  
+      const popups = document.querySelectorAll('.projects__preview.active');
+  
+      popups.forEach((popup) => {
+  
+        popup.classList.remove('active');
+  
+      });
+  
+    }
+  
+  });
+
+// // Get the button, popup, and close button elements
+// const previewButton = document.getElementById('projects-button');
+// const popup = document.getElementById('projects-preview');
+// const closeButton = document.getElementById('preview-close');
+
+// // Open the popup when the button is clicked
+// previewButton.addEventListener('click', () => {
+//     popup.style.display = 'block';
+// });
+
+// // Close the popup when the close button is clicked
+// closeButton.addEventListener('click', () => {
+//     popup.style.display = 'none';
+// });
+
+// // Close the popup when clicking outside the popup content
+// window.addEventListener('click', (event) => {
+//     if (event.target === popup) {
+//         popup.style.display = 'none';
+//     }
+// });
