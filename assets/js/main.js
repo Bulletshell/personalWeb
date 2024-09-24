@@ -152,75 +152,36 @@ sr.reveal(`.home__name, .home__info,
 sr.reveal(`.services__card, .projects__card`, {interval: 100})
 
 /*=============== PROJECT PREVIEW ===============*/
-
-    // Select all buttons with the class "projects__button"
-const buttons = document.querySelectorAll('.projects__button');
-
-// Add an event listener to each button
-buttons.forEach((button) => {
-  button.addEventListener('click', (e) => {
-    // Get the data-preview attribute value of the clicked button
-    const previewId = button.getAttribute('data-preview');
-
-    // Select the corresponding popup window
-    const popup = document.getElementById(`projects-preview-${previewId}`);
-
-    // Show the popup window
-    popup.classList.add('active');
-  });
-});
-
-// Add an event listener to the close button of each popup window
-const closeButtons = document.querySelectorAll('.preview__close');
-
-closeButtons.forEach((closeButton) => {
-  closeButton.addEventListener('click', (e) => {
-    // Get the parent popup window
-    const popup = closeButton.parentNode.parentNode;
-
-    // Hide the popup window
-    popup.classList.remove('active');
-  });
-});
-
-document.addEventListener('click', (e) => {
-
-    // Check if the click is outside the popup window
+document.addEventListener("DOMContentLoaded", () => {
+    // Select all preview buttons and the popups
+    const previewButton = document.querySelectorAll(".projects__button");
+    const previews = document.querySelectorAll(".projects__preview");
   
-    if (!e.target.closest('.projects__preview')) {
+    // Add click event listener to each preview button
+    previewButton.forEach((button) => {
+      button.addEventListener("click", () => {
+        // Get the data-preview attribute value to identify which popup to show
+        const previewId = button.getAttribute("data-preview");
+        const preview = document.getElementById(`projects-preview-${previewId}`);
   
-      // Close all popup windows
+        // Show the selected popup
+        preview.classList.add("active");
+      });
+    });
   
-      const popups = document.querySelectorAll('.projects__preview.active');
-  
-      popups.forEach((popup) => {
-  
-        popup.classList.remove('active');
-  
+    // Add click event listener to each preview for closing functionality
+    previews.forEach((preview) => {
+      // Click outside of the popup content to close the popup
+      preview.addEventListener("click", (e) => {
+        if (e.target === preview) {
+          preview.classList.remove("active");
+        }
       });
   
-    }
-  
+      // Close button inside the popup
+      const closeButton = preview.querySelector(".preview__close");
+      closeButton.addEventListener("click", () => {
+        preview.classList.remove("active");
+      });
+    });
   });
-
-// // Get the button, popup, and close button elements
-// const previewButton = document.getElementById('projects-button');
-// const popup = document.getElementById('projects-preview');
-// const closeButton = document.getElementById('preview-close');
-
-// // Open the popup when the button is clicked
-// previewButton.addEventListener('click', () => {
-//     popup.style.display = 'block';
-// });
-
-// // Close the popup when the close button is clicked
-// closeButton.addEventListener('click', () => {
-//     popup.style.display = 'none';
-// });
-
-// // Close the popup when clicking outside the popup content
-// window.addEventListener('click', (event) => {
-//     if (event.target === popup) {
-//         popup.style.display = 'none';
-//     }
-// });

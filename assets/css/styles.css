@@ -111,7 +111,7 @@ img {
 /*========== Variables Dark theme ==========*/
 body.dark-theme{
 --first-color: hsl(14, 98%, 50%);
-  --green-color: hsl(114, 81%, 43%);
+  --green-color: hsl(114, 90%, 30%);
   /* --green-color: hsl(114, 89%, 22%); */
   /* hsla(114, 92%, 29%, 0.3) */
   --black-color: hsl(0, 0%, 18%);
@@ -893,7 +893,8 @@ body.dark-theme{
   height: 300px;
   background-color: var(--container-color);
   padding: 3rem 1.5rem 3.5rem;
-  margin-left: auto;
+  /* margin-left: auto; */
+  margin: auto;
   border-bottom: 4px solid var(--green-color);
   z-index: 5;
   transition: background-color .4s;
@@ -1158,6 +1159,22 @@ body.dark-theme{
 
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
+@media screen and (max-width: 576px){
+  .contact__data .section__title-2{
+    transform: translateX(0);
+  }
+
+  .popup-content {
+    width: 90%;
+    margin-top: 40%;
+    padding: 15px;
+  }
+
+  .preview__title{
+    font-size: var(--smaller-font-size);
+  }
+}
+
 @media screen and (max-width: 340px){
   .container{
     margin-inline: 1rem;
@@ -1237,11 +1254,11 @@ body.dark-theme{
     color: var(--title-color);
   }
 
-  /* .popup-content {
+  .popup-content {
     width: 80%;
     margin-top: 20%;
     padding: 18px;
-  } */
+  }
 
   .dark-theme .contact__social-arrow{
     filter: none;
