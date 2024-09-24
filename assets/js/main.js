@@ -76,25 +76,35 @@ window.addEventListener('scroll', scrollUp)
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 const sections = document.querySelectorAll('section[id]')
-    
-const scrollActive = () =>{
-  	const scrollDown = window.scrollY
 
-	sections.forEach(current =>{
-		const sectionHeight = current.offsetHeight,
-			  sectionTop = current.offsetTop - 58,
-			  sectionId = current.getAttribute('id'),
-			  sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+const scrollActive = () => {
+    const scrollDown = window.scrollY
 
-		if(scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight){
-			sectionsClass.classList.add('active-link')
-		}else{
-			sectionsClass.classList.remove('active-link')
-		}                                                    
-	})
+    sections.forEach(current => {
+        const sectionHeight = current.offsetHeight,
+            // sectionTop = current.offsetTop - 58,
+            sectionTop = current.id === 'contact' ? current.offsetTop + 80 : current.offsetTop - 58,
+            sectionId = current.getAttribute('id'),
+            sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+
+        // Check if sectionsClass is not null before adding or removing the class
+        if (sectionsClass) {
+            if (scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight) {
+                sectionsClass.classList.add('active-link')
+            } else {
+                sectionsClass.classList.remove('active-link')
+            }
+        }
+    })
 }
 window.addEventListener('scroll', scrollActive)
-
+document.querySelector('.nav__link-button[href="#contact"]').addEventListener('click', (event) => {
+    event.preventDefault();
+    window.scrollTo({
+        top: document.getElementById('contact').offsetTop + 80, // Offset specifically for #contact
+        behavior: 'smooth'
+    });
+});
 
 /*=============== DARK LIGHT THEME ===============*/ 
 const themeButton = document.getElementById('theme-button')
@@ -140,3 +150,38 @@ sr.reveal(`.home__name, .home__info,
             .about__container .section__title-1, .about__info,
             .contact__social, .contact__data`, {origin: 'left'})
 sr.reveal(`.services__card, .projects__card`, {interval: 100})
+
+/*=============== PROJECT PREVIEW ===============*/
+document.addEventListener("DOMContentLoaded", () => {
+    // Select all preview buttons and the popups
+    const previewButton = document.querySelectorAll(".projects__button");
+    const previews = document.querySelectorAll(".projects__preview");
+  
+    // Add click event listener to each preview button
+    previewButton.forEach((button) => {
+      button.addEventListener("click", () => {
+        // Get the data-preview attribute value to identify which popup to show
+        const previewId = button.getAttribute("data-preview");
+        const preview = document.getElementById(`projects-preview-${previewId}`);
+  
+        // Show the selected popup
+        preview.classList.add("active");
+      });
+    });
+  
+    // Add click event listener to each preview for closing functionality
+    previews.forEach((preview) => {
+      // Click outside of the popup content to close the popup
+      preview.addEventListener("click", (e) => {
+        if (e.target === preview) {
+          preview.classList.remove("active");
+        }
+      });
+  
+      // Close button inside the popup
+      const closeButton = preview.querySelector(".preview__close");
+      closeButton.addEventListener("click", () => {
+        preview.classList.remove("active");
+      });
+    });
+  });
